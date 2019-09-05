@@ -5,8 +5,12 @@
  * Fall 2019
  *
  * Description:
- * TODO Add this in
- * */
+ * This program takes an Integer N and 'creates' a set A.
+ * e.g. {1, 2, 3, ..., N}
+ * This program then prints the powersets of A.
+ * NOTE that the implementation does not actually create the set A. It just prints the powersets of A.
+ *
+ */
 
 import static java.lang.System.out;
 import java.util.InputMismatchException;
