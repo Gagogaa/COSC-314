@@ -67,7 +67,7 @@ class PowerSetPrinter
     }
 
     /*
-     * Given a bit patter produce the corresponding set
+     * Given a bit pattern produce the corresponding set
      */
     public static String
     genSeq(int seq)
