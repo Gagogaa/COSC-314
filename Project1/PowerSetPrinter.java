@@ -54,6 +54,9 @@ class PowerSetPrinter
         out.println('{');
 
         // Loop through all of the permutations of the set
+        // TODO this explanation still requires some work
+        // (1 << input) is a substitute for the power function when the base of the function is two
+        // (2 ^ 3) == (2 << 3)
         for (int i = 0; i < (1 << input); i++)
         {
             out.print(genSeq(i));
@@ -68,17 +71,31 @@ class PowerSetPrinter
 
     /*
      * Given a bit pattern produce the corresponding set
+     *
+     * E.g. If seq is 0001 0101
+     * the bits are as follows
+     * 8 7 6 5  4 3 2 1
+     * ----------------
+     * 0 0 0 1  0 1 0 1
+     *
+     * {     5,   3,  1}
+     *
      */
     public static String
     genSeq(int seq)
     {
         String res = "  {";
 
+        // Checks each bit of seq and add the corresponding bit number to the result
+        // The stop condition is when the MSB of the test is larger than the number.
         for (int shift = 0; (1 << shift) <= seq; shift++)
         {
             if ((seq & (1 << shift)) != 0)
             {
+                // Append the BIT number to the sequence
                 res += Integer.toString(shift + 1);
+
+                // Check if we need to add in the trailing comma
                 if ((1 << (shift + 1)) <= seq)
                     res += ',';
             }
