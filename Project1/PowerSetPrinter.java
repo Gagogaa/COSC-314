@@ -1,13 +1,14 @@
 /*
  * Gregory Mann
- * COSC 314
- * Section 1
+ * E01457245
+ * COSC 314-1
+ * Project 1
  * Fall 2019
  *
  * Description:
  * This program takes an Integer N and 'creates' a set A.
  * e.g. {1, 2, 3, ..., N}
- * This program then prints the powersets of A.
+ * This program then prints the powerset of A.
  *
  * NOTE that the implementation does not actually create the set A. It just prints the powersets of A.
  * It exploits the fact that the set is always sequential 1..N
@@ -51,7 +52,8 @@ class PowerSetPrinter
             out.println("Program input must be positive Integer.");
             System.exit(1);  // Exit with an error code
         }
-
+		
+		out.println("All the subsets are:");
         // If the input is valid start the algorithm
         out.println('{');
 
@@ -107,3 +109,42 @@ class PowerSetPrinter
         return res + '}';
     }
 }
+
+/* In class program output:
+Please input a positive Integer: 5
+All the subsets are:
+{
+  {},
+  {1},
+  {2},
+  {1,2},
+  {3},
+  {1,3},
+  {2,3},
+  {1,2,3},
+  {4},
+  {1,4},
+  {2,4},
+  {1,2,4},
+  {3,4},
+  {1,3,4},
+  {2,3,4},
+  {1,2,3,4},
+  {5},
+  {1,5},
+  {2,5},
+  {1,2,5},
+  {3,5},
+  {1,3,5},
+  {2,3,5},
+  {1,2,3,5},
+  {4,5},
+  {1,4,5},
+  {2,4,5},
+  {1,2,4,5},
+  {3,4,5},
+  {1,3,4,5},
+  {2,3,4,5},
+  {1,2,3,4,5}
+}
+*/
