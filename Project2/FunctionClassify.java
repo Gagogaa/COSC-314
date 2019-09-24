@@ -20,9 +20,10 @@ FunctionClassify
     public static void
     main(String[] args)
     {
-        out.print("Please input the integers 'm' and 'n' separated by a space: ");
+        out.print("Please input the integers 'm' (Domain) and 'n' (Codomain) separated by a space: ");
         Scanner kbd = new Scanner(System.in);
         int m = 0 , n = 0;
+        // Read in m and n
         try
         {
             m = kbd.nextInt();
@@ -30,22 +31,27 @@ FunctionClassify
         }
         catch (InputMismatchException e)
         {
-            out.println("The program expects two int values");
+            out.println("The program expects two int values one for m and one for n");
+            System.exit(1);
         }
         out.println("Please enter in boolean matrix:");
+        // Initialize the arrays for storing col totals
         int[] colTotals = new int[n + 1];
         boolean isFunction = true;
         int rowTotal = 0;
-        for (int i = 0; i < ((m + 1) * (n + 1)); i++)
+        // Loop through rading in the true false matrix counting row totals and column totals
+        try
         {
-            try
+            for (int i = 0; i < ((m + 1) * (n + 1)); i++)
             {
                 int in = kbd.nextInt();
-                if (in != 0)
+                // If the input is one add this column to the column totals and row totals
+                if (in = 1)
                 {
                     colTotals[i % (n + 1)] += 1;
                     rowTotal += 1;
                 }
+                // If we're at the end of the line check the row total and reset rowCount
                 if (i % (n + 1) == (n))
                 {
                     if (rowTotal == 0 || rowTotal >= 2)
@@ -53,23 +59,28 @@ FunctionClassify
                     rowTotal = 0;
                 }
             }
-            catch (InputMismatchException e)
-            {
-                out.println("The program expects int values 0 or 1");
-            }
+        }
+        catch (InputMismatchException e)
+        {
+            out.println("The program expects int values 0 or 1");
+            System.exit(1);
         }
 
         if (isFunction)
+            // If F is a function then pring out if its one to one, onto, or a bijection
             out.println(classify(colTotals));
         else
             out.println("F is not a function.");
     }
 
 
+    // Returns what kind a function F is by examining the row totals
     public static String
     classify(int[] totals)
     {
         boolean oneToOne = true, onto = true;
+        // If any of the rows are >= 2 then the function is not one to one
+        // If any of the rows are less than 1 then the function is not onto
         for (int x: totals)
         {
             if (x >= 2)
