@@ -1,11 +1,12 @@
 /*
  * Gregory Mann
  * E01457245
+ * COSC 314-1
  * Project 2
  * Fall 2019
  *
  * Description:
- * TODO
+ * This program determines if its inputs are a function and if that function is one to one, onto, or a bijection.
  *
  */
 
@@ -39,7 +40,7 @@ FunctionClassify
         int[] colTotals = new int[n + 1];
         boolean isFunction = true;
         int rowTotal = 0;
-        // Loop through rading in the true false matrix counting row totals and column totals
+        // Loop through the true false matrix counting row totals and column totals
         try
         {
             for (int i = 0; i < ((m + 1) * (n + 1)); i++)
@@ -67,7 +68,7 @@ FunctionClassify
         }
 
         if (isFunction)
-            // If F is a function then pring out if its one to one, onto, or a bijection
+            // If F is a function then print out if its one to one, onto, or a bijection
             out.println(classify(colTotals));
         else
             out.println("F is not a function.");
