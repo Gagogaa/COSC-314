@@ -47,7 +47,7 @@ FunctionClassify
             {
                 int in = kbd.nextInt();
                 // If the input is one add this column to the column totals and row totals
-                if (in = 1)
+                if (in == 1)
                 {
                     colTotals[i % (n + 1)] += 1;
                     rowTotal += 1;
@@ -68,8 +68,12 @@ FunctionClassify
         }
 
         if (isFunction)
+        {
             // If F is a function then print out if its one to one, onto, or a bijection
+            out.println("");  // Add space between input and output
             out.println(classify(colTotals));
+            out.println("");  // Add space between input and output
+        }
         else
             out.println("F is not a function.");
     }
@@ -98,3 +102,41 @@ FunctionClassify
         return "F is not one to one or onto.";
     }
 }
+
+
+{
+  Program input output
+
+cs-520-2-2:Project2 student$ java FunctionClassify
+Please input the integers 'm' (Domain) and 'n' (Codomain) separated by a space: 3 4
+Please enter in boolean matrix:
+0 0 0 1 0
+0 0 1 0 0
+0 0 0 0 1
+1 0 0 0 0
+
+F is one to one.
+
+cs-520-2-2:Project2 student$ java FunctionClassify
+Please input the integers 'm' (Domain) and 'n' (Codomain) separated by a space: 4 3
+Please enter in boolean matrix:
+0 0 1 0
+0 0 0 1
+1 0 0 0
+0 0 1 0
+0 1 0 0
+
+F is onto.
+
+cs-520-2-2:Project2 student$ java FunctionClassify
+Please input the integers 'm' (Domain) and 'n' (Codomain) separated by a space: 3 3
+Please enter in boolean matrix:
+0 1 0 0
+0 0 0 1
+0 0 0 1
+0 0 1 0
+
+F is not one to one or onto.
+
+}
+
