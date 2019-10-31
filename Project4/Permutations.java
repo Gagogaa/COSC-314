@@ -22,8 +22,9 @@ Permutations
     main(String[] args)
     {
         Scanner kbd = new Scanner(System.in);
-        int n = -1;
-        out.println("Please input a number for n");
+        int n = 0;
+        out.print("Please input a number for n: ");
+
         // Read in n
         try
         {
@@ -39,29 +40,38 @@ Permutations
 
         // Initialize the array 1..n
         int[] arr = new int[n];
-        for (int i = 1; i < n + 1; i++)
-            arr[i-1] = i;
+        for (int i = 0; i < n; i++)
+            arr[i] = i + 1;
 
-        out.println();  // Add a space between input and output
-        try
+        // Add a space between input and output
+        out.println();
+
+        // Get the number of permutations, which happens to be n!
+        int permCount = n;
+        for (int i = 1; i < n; i++)
+            permCount *= i;
+
+        // Run for each permutation
+        int i = 0;
+        do
         {
-            while (true)
-            {
-                for (int j = 0; j < n; j++)
-                    out.print(arr[j]);
-                out.println();
+            // Print out the permutation
+            for (int j = 0; j < n; j++)
+                out.print(arr[j]);
+
+            out.println();
+
+            // Only do the permutation if were not on the last iteration
+            if (i < permCount - 1)
                 perm(arr);
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException e)
-        {}
+        } while (i++ < permCount - 1);
     }
 
-
+    // The implementation of Fischer-Krause algorithm from the handout
     public static void
     perm(int[] arr)
     {
-        int j = arr.length-2;
+        int j = arr.length - 2;
 
         while (arr[j] > arr[j + 1])
             j--;
@@ -76,7 +86,7 @@ Permutations
         arr[k] = arr[j];
         arr[j] = temp;
 
-        int right = arr.length-1;
+        int right = arr.length - 1;
         int left = j + 1;
 
         while (right > left)
