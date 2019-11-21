@@ -56,25 +56,40 @@ ClassifyRelation
 
         out.println();
 
-        classifyReflexive(R, n);
-        classifySymmetric(R, n);
-        classifyAntiSymmetric(R, n);
-        classifyTransitive(R, n);
+        if (classifyReflexive(R, n))
+            out.println("Reflexive");
+        else
+            out.println("Not Reflexive");
+        
+        if (classifySymmetric(R, n))
+            out.println("Symmetric");
+        else
+            out.println("Not Symmetric");
+            
+        if (classifyAntiSymmetric(R, n))
+            out.println("Anti-Symmetric");
+        else
+            out.println("Not Anti-Symmetric");
+            
+        if (classifyTransitive(R, n))
+            out.println("Transitive");
+        else
+            out.println("Not Transitive");
     }
 
 
-    public static void
+    public static boolean
     classifyReflexive(boolean[] R, int matSize)
     {
         for (int i = 0; i < matSize; i++)
             if (!R[(i * matSize) + i])
-                return;
+                return false;
 
-        out.println("Reflexive");
+        return true;
     }
 
 
-    public static void
+    public static boolean
     classifySymmetric(boolean[] R, int matSize)
     {
         for (int i = 0; i < matSize; i++)
@@ -82,13 +97,13 @@ ClassifyRelation
                 if (i != j
                     && R[(i * matSize) + j]
                     && !R[(j * matSize) + i])
-                    return;
+                    return false;
 
-        out.println("Symmetric");
+        return true;
     }
 
 
-    public static void
+    public static boolean
     classifyAntiSymmetric(boolean[] R, int matSize)
     {
         for (int i = 0; i < matSize; i++)
@@ -96,13 +111,13 @@ ClassifyRelation
                 if (i != j
                     && R[(i * matSize) + j]
                     && R[(j * matSize) + i])
-                    return;
+                    return false;
 
-        out.println("Anti-symmetric");
+        return true;
     }
 
 
-    public static void
+    public static boolean
     classifyTransitive(boolean[] R, int matSize)
     {
         boolean[] R1 = new boolean[matSize * matSize];
@@ -118,9 +133,9 @@ ClassifyRelation
 
         for (int i = 0; i < matSize * matSize; i++)
             if (R3[i])
-                return;
+                return false;
 
-        out.println("Transitive");
+        return true;
     }
 
 
@@ -148,3 +163,41 @@ ClassifyRelation
         return res;
     }
 }
+
+/* In class output
+cs-520-2-2:Project5 student$ java ClassifyRelation
+Please input a number for n: 3
+0 1 0
+0 1 1
+1 1 0
+
+Not Reflexive
+Not Symmetric
+Not Anti-Symmetric
+Not Transitive
+cs-520-2-2:Project5 student$ java ClassifyRelation
+Please input a number for n: 4
+0 1 0 1
+1 0 1 0
+0 1 0 1
+1 0 1 0
+
+Not Reflexive
+Symmetric
+Not Anti-Symmetric
+Not Transitive
+cs-520-2-2:Project5 student$ java ClassifyRelation
+Please input a number for n: 6
+1 1 0 0 0 1
+0 1 0 1 0 0
+0 0 1 0 0 0
+1 0 0 1 1 0
+0 1 1 0 1 0
+0 0 1 0 1 
+1
+
+Reflexive
+Not Symmetric
+Anti-Symmetric
+Not Transitive
+*/
